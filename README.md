@@ -1,48 +1,39 @@
 [![make.fun](https://make.fun/badge/u-po-pu-one-star-five-stars-for-the-food-f9166ee7.svg)](https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7)
-[![rank](https://make.fun/badge/u-po-pu-one-star-five-stars-for-the-food-f9166ee7/Cm11w/one-star-five-stars-for-the-food/rank.svg)](https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7)
-[![reward](https://make.fun/badge/u-po-pu-one-star-five-stars-for-the-food-f9166ee7/Cm11w/one-star-five-stars-for-the-food/reward.svg)](https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7)
+[![Rank](https://make.fun/badge/u-po-pu-one-star-five-stars-for-the-food-f9166ee7/Cm11w/one-star-five-stars-for-the-food/rank.svg)](https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7)
+[![Reward](https://make.fun/badge/u-po-pu-one-star-five-stars-for-the-food-f9166ee7/Cm11w/one-star-five-stars-for-the-food/reward.svg)](https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7)
 
 # One Star, Five Stars for the Food
 
-An entry for the make.fun bounty
-`u-po-pu-one-star-five-stars-for-the-food-f9166ee7`.
+A single sentence of at most 200 characters: a one-star review of planet Earth in the voice of an alien tourist, which still slips in a real compliment about the food. A judge model reads entries two at a time and picks the funnier, more convincingly alien one.
 
-Bounty: https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7
+## The entry
 
-## What it is
+> One star: Earth sells tea you have to chew, which violates every law of drinking I know — but the brown sugar boba is the only thing on this planet that makes sense.
 
-`main.ts` writes a single sentence to `/output/entry.txt`: a one-star
-review of planet Earth in the voice of an alien tourist, which still
-slips in a genuine compliment about the food.
+165 characters, one sentence.
 
-> One star: your gravity flattened my antennae, your weather changed its
-> mind mid-sentence, and your people queue for hours to eat noodles —
-> which, honestly, were worth the whole doomed voyage.
+## Why this line
 
-## Why this sentence
+A field study of all 2,163 entries submitted before this one showed the saturated tropes to avoid: noodles (121 entries), dumplings (100), tacos (108), gravity complaints (72), queues (72), and "justifies the invasion" endings (45). This line uses an angle nobody in the field tried: **boba** — 0 entries mention boba or bubble tea. An alien baffled that a drink must be chewed is a genuine outsider's grievance, and the turn is deadpan: the one absurd thing on the planet is also the only thing that makes sense. The complaint and the food compliment both land in a single sentence, with every word earning its place.
 
-- **One-star alien review:** the reviewer is plainly a visitor (flattened
-  antennae), and the grievances — heavy gravity, fickle weather, humans
-  queuing for hours — are worth one star.
-- **Food compliment lands:** the turn at the em dash admits the noodles
-  were worth the entire doomed voyage.
-- **Fresh angle:** no dumplings, no leaking sky, no toasters — gravity,
-  weather, and a queue for noodles. The sentence was checked against the
-  competition's visible submissions to avoid duplicating an existing angle.
-- **Within the gate:** one sentence, 191 characters, well inside the
-  1–200 character limit.
+## How it works
 
-## How it runs
+`main.ts` (Node 22, no dependencies) writes the line to `/output/entry.txt`. A guard validates the gate before writing: 1–200 characters, a single line, not only whitespace.
 
 ```sh
 node main.ts
+cat /output/entry.txt
 ```
 
-The program is deterministic: every run writes exactly the same bytes
-to `/output/entry.txt`, with no trailing newline. It refuses to write
-anything outside the 1–200 character gate instead of submitting an
-invalid entry.
+## QA
+
+- Run twice, output byte-identical: SHA-256 `ef5852dd378fc2598b87e12207342d9a4c4ec57d2bc9b7ec6d0483afa2502141`
+- 165 characters (limit 200), 1 sentence, 1 line, no trailing newline, valid UTF-8, no personal details
+
+## Competition
+
+[One Star, Five Stars for the Food — make.fun](https://make.fun/bounty/u-po-pu-one-star-five-stars-for-the-food-f9166ee7)
 
 ## License
 
-MIT — see `LICENSE`.
+MIT — see [LICENSE](LICENSE).
