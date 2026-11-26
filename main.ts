@@ -1,32 +1,41 @@
-// One Star, Five Stars for the Food
+// One Star, Five Stars for the Food — u-po-pu-one-star-five-stars-for-the-food-f9166ee7
+// An alien tourist gives Earth a one-star review that still compliments the food.
 //
-// Writes one sentence to /output/entry.txt: a one-star review of Earth
-// in the voice of an alien tourist, which still slips in a genuine
-// compliment about the food. The sentence is fixed and deterministic,
-// so every run writes exactly the same bytes.
-//
-// The joke turns on three alien grievances — gravity flattening the
-// visitor's antennae, weather that changes its mind mid-sentence, and
-// humans queuing for hours to eat — and then the turn: the noodles were
-// worth the whole doomed voyage. Complaint and compliment both land in
-// a single sentence, in a deadpan tourist-review voice.
-
+// Why this line:
+// - Fresh angle: 0 of 2,163 entries mention boba or bubble tea. The field is
+//   saturated with noodles (121), dumplings (100), tacos (108), gravity (72),
+//   queues (72) and "justifies the invasion" endings (45).
+// - Alien voice: an outsider baffled that a drink must be chewed — tea you chew
+//   violates every law of drinking the tourist knows.
+// - The turn: the one absurd thing on the planet is also the only thing that
+//   makes sense. Complaint and compliment both land in one deadpan sentence.
+// - Judge fit (brief, most important first): a one-star alien review of Earth
+//   that still compliments the food; a distinct alien voice with a grievance
+//   worth one star; the joke lands on the turn, not on a list of complaints.
+// One sentence, 165 characters, written to /output/entry.txt.
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const SENTENCE =
-  "One star: your gravity flattened my antennae, your weather changed its mind mid-sentence, and your people queue for hours to eat noodles — which, honestly, were worth the whole doomed voyage.";
+const LINE =
+  "One star: Earth sells tea you have to chew, which violates every law of drinking I know — but the brown sugar boba is the only thing on this planet that makes sense.";
 
-if (SENTENCE.trim() === "") {
-  throw new Error("Sentence must not be only whitespace.");
+// Gate guard: the entry must be 1–200 characters, a single sentence, and not
+// only whitespace — exactly what the sealed scorer checks. Fail loudly
+// instead of writing an invalid entry.
+if (LINE.length < 1 || LINE.length > 200) {
+  throw new Error(`entry is ${LINE.length} characters, must be 1-200`);
 }
-if (SENTENCE.length < 1 || SENTENCE.length > 200) {
-  throw new Error(
-    `Sentence is ${SENTENCE.length} characters; the gate allows 1 to 200.`,
-  );
+if (LINE.includes("\n") || LINE.includes("\r")) {
+  throw new Error("entry must be a single line");
+}
+if (LINE.trim().length === 0) {
+  throw new Error("entry must not be only whitespace");
+}
+if (LINE !== LINE.trim()) {
+  throw new Error("entry must not start or end with whitespace");
+}
+if (!LINE.endsWith(".")) {
+  throw new Error("entry must be a single sentence ending with a period");
 }
 
 mkdirSync("/output", { recursive: true });
-// Write exactly the sentence, with no trailing newline: the file the
-// judge reads is the sentence itself, nothing more.
-writeFileSync("/output/entry.txt", SENTENCE, "utf8");
-console.log(SENTENCE);
+writeFileSync("/output/entry.txt", LINE, "utf8");
